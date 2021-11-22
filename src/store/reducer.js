@@ -176,6 +176,11 @@ const reducer = (state, action) => {
                   users: [],
                 }
           break;
+         case "ADD_TABLE_FILTER":
+           return {...state,
+                   filterTable: [...state.filterTable ,'33'],
+                 }
+           break;
 
       default:
         return state;

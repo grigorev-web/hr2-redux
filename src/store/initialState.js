@@ -25,7 +25,12 @@ const initialState = {
         candidate:{},
         events:[],
       }
-    }
+    },
+    filterTable:[
+                  {city:[]},
+                  {status:[]}
+                ],
+    sort:false,
 }
 
 
