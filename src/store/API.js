@@ -11,7 +11,7 @@ const api = (dispatch, state) => {
     console.log("API");
     if (!response.data.login) {
       console.log("нет логина");
-      dispatch({ type: "LOGOUT" });
+      dispatch({ type: "LOGOUT" }); 
       return;
     }
 
