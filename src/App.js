@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
+import AppContainer from "./components/layout/AppContainer";
+import MainMenu from "./components/menus/MainMenu";
+import AdminPage from "./components/admin";
+
+import {homepage} from "./components/constants";
+
+import Operator from "./components/operator";
+import Recruter from "./components/recruter";
+import LoginPage from './components/login/LoginPage';
+import Modals from './components/modals/Modals';
+
+
+
+import {useSelector} from 'react-redux';
 
 function App() {
+
+
+  const login = useSelector( state => state.login);
+
+  if(!login) return <LoginPage/>;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <AppContainer>
+        <MainMenu />
+        <Modals />
+
+        <Routes>
+          <Route path={`${homepage}/`} element={<Operator />} />
+          <Route path={`${homepage}/operator`} element={<Operator />} />
+          <Route path={`${homepage}/recruter`} element={<Recruter />} />
+          <Route path={`${homepage}/admin`} element={<AdminPage />} />
+        </Routes>
+
+      </AppContainer>
+    </BrowserRouter>
   );
 }
 
