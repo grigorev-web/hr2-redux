@@ -1,5 +1,5 @@
-import SortCity from "../fllter/SortCity";
-import FilterCity from "../fllter/FilterCity";
+import SortCity from "../fllter/city/SortCity";
+import FilterCity from "../fllter/city/FilterCity";
 import { useState } from "react";
 import { FiTerminal } from "react-icons/fi";
 import { useSelector } from "react-redux";
@@ -16,7 +16,7 @@ const CityHead = () => {
       }}
       onMouseLeave={()=>{setShowFilters(false)}}
     >
-      <div className="d-flex">
+      <div className="d-flex justify-content-between">
         <span>Город</span>
 
         { (showFilters || filter.some( obj =>('city' in obj) )) ? (

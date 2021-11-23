@@ -27,8 +27,8 @@ const initialState = {
       }
     },
     filterTable:[
-                  {city:[]},
-                  {status:[]}
+                 // {city:['Нижний Новгород','Выкса']},
+                 // {status:[]}
                 ],
     sort:false,
 }

@@ -177,11 +177,47 @@ const reducer = (state, action) => {
                 }
           break;
          case "ADD_TABLE_FILTER":
-           return {...state,
-                   filterTable: [...state.filterTable ,'33'],
+           // {action:'',column:'city', value:'Нижний Новгород'} приходит
+            // {...state,
+            //   fiterTable:[{city:['Нижний Новгород','Выкса']}]
+            // }
+
+            // Если фильтр уже содержит этот column('city' или 'status')
+           if( state.filterTable.some( obj =>(action.column in obj) ) ){       
+             return {...state,
+                  filterTable: state.filterTable.map( (obj)=>{ // ищем нужный фильтр
+                    if (action.column in obj) return {[action.column]:[...obj[action.column],action.value]} // Пушим новый value
+                    else return obj;
+                  }),
+              }
+           } // если не содержит - добавляем
+           else return {...state,
+                  filterTable: [...state.filterTable , {[action.column] : [action.value]}],
                  }
            break;
 
+
+
+        case "DELETE_TABLE_FILTER":
+         // {action:'---',column:'city',value:'Нижний Новгород'}
+        // if( state.filterTable.some( obj =>(action.column in obj)) ){ // если такой фильтр есть
+            let newFilter = state.filterTable.map( obj =>{
+                if( action.column in obj){
+                  return {[action.column]:obj[action.column].filter( value =>(action.value != value) )}
+                } else return obj;
+             });
+
+          return {...state,
+                  filterTable: newFilter.filter( obj => obj[action.column].length ),
+                }
+          break;
+
+
+          case "CLEAR_TABLE_FILTER":
+          return {...state,
+                  filterTable: [],
+                }
+          break;
       default:
         return state;
         break;

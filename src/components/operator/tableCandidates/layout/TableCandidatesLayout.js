@@ -9,7 +9,8 @@ import { BiRefresh } from "react-icons/bi";
 const TableCandidatesLayout = ({ children }) => {
   const dispatch = useDispatch();
   const candidates = useSelector((state) => state.candidates);
-  const login = useSelector( state => state.login);
+  const login = useSelector((state) => state.login);
+  const filter = useSelector( state => state.filterTable)
   function fetchMoreCandidates() {
     dispatch(asyncGetMoreCandidates());
   }
@@ -31,14 +32,23 @@ const TableCandidatesLayout = ({ children }) => {
               <BiRefresh size="1.5em" />
             </button>
             <div className="btn-actions-pane-right">
-              <div role="group" className="btn-group-sm btn-group">
-                {/* <button className="active btn btn-info">Прош. неделя</button> */}
-                <a href={`http://10.105.0.8/dg/hh/add_contact.php?hr=${login}`} target="_blank">
-                  <button className="btn btn-outline-success btn-sm" title="Добавить кандидата">
-                    +
-                  </button>
-                </a>
-              </div>
+              { filter.length ? <button
+                className="active btn btn-danger mr-4"
+                onClick={()=>{dispatch({ type: "CLEAR_TABLE_FILTER" })}}
+              >
+                Сбросить фильтры
+              </button> :''}
+              <a
+                href={`http://10.105.0.8/dg/hh/add_contact.php?hr=${login}`}
+                target="_blank"
+              >
+                <button
+                  className="btn btn-outline-success btn-sm"
+                  title="Добавить кандидата"
+                >
+                  +
+                </button>
+              </a>
             </div>
           </div>
 

@@ -12559,4 +12559,8 @@ input[type=file]:hover{
 .drag-table a:hover{
   text-decoration: underline !important;
 }
+.dropdown-values p{
+  margin-bottom: 0px;
+  font-size:12px;
+}
 /*# sourceMappingURL=base.css.map */
