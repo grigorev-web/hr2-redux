@@ -178,20 +178,30 @@ const reducer = (state, action) => {
                 }
           break;
          case "ADD_TABLE_FILTER":
-           // {action:'',column:'city', value:'Нижний Новгород'} приходит
+           // {type:'ADD_TABLE_FILTER',column:'city', value:'Нижний Новгород'} 
             // {...state,
             //   fiterTable:[{city:['Нижний Новгород','Выкса']}]
             // }
 
+          //  if(action.column === 'namephone'){
+          //    return {...state,
+          //           filterTable:state.filterTable.map( (obj)=>{ // ищем нужный фильтр
+          //             if (action.column in obj) return {[action.column]:[action.value]} //  новый value
+          //             else return obj;
+          //           }),
+          //  }
+          // }
+          
             // Если фильтр уже содержит этот column('city' или 'status')
-           if( state.filterTable.some( obj =>(action.column in obj) ) ){       
+           if( state.filterTable.some( obj =>(action.column in obj) ) ){  
+             console.log("Уже содержит")     
              return {...state,
                   filterTable: state.filterTable.map( (obj)=>{ // ищем нужный фильтр
                     if (action.column in obj) return {[action.column]:[...obj[action.column],action.value]} // Пушим новый value
                     else return obj;
                   }),
               }
-           } // если не содержит - добавляем
+           } // если не содержит - добавляем обьект фильтра
            else return {...state,
                   filterTable: [...state.filterTable , {[action.column] : [action.value]}],
                   scroll:true,
@@ -201,7 +211,7 @@ const reducer = (state, action) => {
 
 
         case "DELETE_TABLE_FILTER":
-         // {action:'---',column:'city',value:'Нижний Новгород'}
+         // {type:'DELETE_TABLE_FILTER',column:'city',value:'Нижний Новгород'}
         // if( state.filterTable.some( obj =>(action.column in obj)) ){ // если такой фильтр есть
             let newFilter = state.filterTable.map( obj =>{
                 if( action.column in obj){
@@ -215,7 +225,7 @@ const reducer = (state, action) => {
                 }
           break;
 
-
+ 
           case "CLEAR_TABLE_FILTER":
           return {...state,
                   filterTable: [],

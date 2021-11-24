@@ -29,7 +29,7 @@ const initialState = {
     },
     filterTable:[
                  // {city:['Нижний Новгород','Выкса']},
-                  {status:[2,3]}
+                 // {status:[2,3]}
                 ],
     sort:{},
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaSortAmountUp, FaSortAmountDown } from "react-icons/fa";
+import { FaSortAmountUpAlt, FaSortAmountDown } from "react-icons/fa";
 
 const SortCity = () => {
   const [hover, setHover] = useState(false);
@@ -17,7 +17,7 @@ const SortCity = () => {
       }}
       onClick={()=>{setSortAsc(!sortAsc)}}
     >
-      { sortAsc ? <FaSortAmountDown />: <FaSortAmountUp/>}
+      { sortAsc ? <FaSortAmountDown />: <FaSortAmountUpAlt/>}
     </div>
   );
 };

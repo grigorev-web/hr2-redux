@@ -5,8 +5,12 @@ import api from "./API";
 
 export const asyncGetCandidatesInit = () => (dispatch, getState) =>{
 
-  dispatch({type:"LOADING"});
+  
   const state = getState();
+  if(state.loading) return;
+  dispatch({type:"LOADING"});
+
+  
   const API = api(dispatch,state);
 
   API.post(`candidates`,{filter:state.filterTable})
@@ -25,6 +29,7 @@ export const asyncGetCandidatesInit = () => (dispatch, getState) =>{
 export const asyncGetMoreCandidates = () => (dispatch, getState) =>{
 
   const state = getState();
+
   const API = api(dispatch,state);
   //if(state.candidates[state.candidates.length -1].id < 1000) return; // перестать подгружать
   if(!state.scroll) return;

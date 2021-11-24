@@ -6,11 +6,18 @@ import {useDispatch, useSelector} from 'react-redux';
 
 export default function LoginPage(props){
 
-  const[login, setLogin] = useState('');
-  const[pass,setPass] = useState('');
-
   const dispatch = useDispatch();
   const state = useSelector( state => state);
+
+  // удалить
+  let $defaultUser = state.env === 'development' ? 'dgrigorev' : '';
+  let $defaultPassword = state.env === 'development' ? 'u7XNqWJd' : '';
+
+
+  const[login, setLogin] = useState($defaultUser);
+  const[pass,setPass] = useState($defaultPassword);
+
+  
 
 
   function loginClickHandler(e){
@@ -50,6 +57,7 @@ export default function LoginPage(props){
            className="form-control"
            placeholder="Логин"
            onChange={(e)=> setLogin(e.target.value)}
+           value={login}
           />
   </div>
 
@@ -59,6 +67,7 @@ export default function LoginPage(props){
            className="form-control mt-4"
            placeholder="Пароль"
            onChange={(e)=> setPass(e.target.value)}
+           value={pass}
            />
   </div>
 
