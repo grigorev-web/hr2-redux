@@ -1,5 +1,6 @@
 const reducer = (state, action) => {
     switch (action.type) {
+      
       case "ONLOAD_TABLE":
         return {...state,
                 candidates: action.candidates,
@@ -193,6 +194,7 @@ const reducer = (state, action) => {
            } // если не содержит - добавляем
            else return {...state,
                   filterTable: [...state.filterTable , {[action.column] : [action.value]}],
+                  scroll:true,
                  }
            break;
 
@@ -209,6 +211,7 @@ const reducer = (state, action) => {
 
           return {...state,
                   filterTable: newFilter.filter( obj => obj[action.column].length ),
+                  scroll:true,
                 }
           break;
 
@@ -218,6 +221,12 @@ const reducer = (state, action) => {
                   filterTable: [],
                 }
           break;
+
+          case "STOP_SCROLL":
+            return {...state,
+                    scroll: false,
+                  }
+            break;
       default:
         return state;
         break;

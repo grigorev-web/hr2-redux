@@ -14,6 +14,12 @@ const api = (dispatch, state) => {
       dispatch({ type: "LOGOUT" }); 
       return;
     }
+    // stop infinite scroll
+    if ( ('scroll' in response.data) && !response.data.scroll) {
+      console.log("STOP_SCROLL");
+      dispatch({ type: "STOP_SCROLL" }); 
+      return response;
+    }
 
     return response;
   });

@@ -9,13 +9,12 @@ export const asyncGetCandidatesInit = () => (dispatch, getState) =>{
   const state = getState();
   const API = api(dispatch,state);
 
-  console.log("async candidates")
-  API.get(`candidates`)
+  API.post(`candidates`,{filter:state.filterTable})
     .then(function (response) {
-        console.log(response);
+        console.log(response.data);
         dispatch({type:"ONLOAD_TABLE", candidates: response.data.candidates})
-        console.log("ONLOAD_TABLE");
-        setTimeout( () => dispatch({type:"LOADED"}), 300);
+        
+        setTimeout( () => dispatch({type:"LOADED"}), 100);
     })
     .catch(function (error) {
       console.log(error);
@@ -24,15 +23,16 @@ export const asyncGetCandidatesInit = () => (dispatch, getState) =>{
 
 
 export const asyncGetMoreCandidates = () => (dispatch, getState) =>{
+
   const state = getState();
   const API = api(dispatch,state);
-  if(state.candidates[state.candidates.length -1].id < 11) return; // перестать подгружать
-
+  //if(state.candidates[state.candidates.length -1].id < 1000) return; // перестать подгружать
+  if(!state.scroll) return;
   let last_id = state.candidates[state.candidates.length -1].id;
 
-  API.get(`candidates?offset=${last_id}`)
+  API.post(`candidates?offset=${last_id}`,{filter:state.filterTable})
     .then(function (response) {
-        // console.log(response.data);
+         console.log(response);
         dispatch({type:"FETCH_MORE_CANDIDATES", candidates: response.data.candidates})
 
     })
@@ -161,4 +161,16 @@ export const asyncChangeHR = (hr,candidateID) => (dispatch, getState) =>{
        .catch(function (error) {
       console.log(error);
     });
+}
+
+
+export const asyncGetCandidatesFilter = () => (dispatch, getState) =>{
+
+  const state = getState();
+  const API = api(dispatch,state);
+  API.post(`candidates/filter`,{filter:state.filterTable})
+    .then( function(response){
+      console.log("SERVER RESPONSE FILTER", response.data)
+      dispatch({type:"ONLOAD_TABLE", candidates: response.data.result})
+    })
 }

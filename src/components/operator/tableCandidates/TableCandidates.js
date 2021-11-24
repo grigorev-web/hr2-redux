@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { asyncGetCandidatesInit } from "../../../store/asyncActions";
+import { asyncGetCandidatesInit,asyncGetCandidatesFilter } from "../../../store/asyncActions";
 
 import TableCandidatesLayout from "./layout/TableCandidatesLayout";
 import TableCandidatesHead from "./TableCandidatesHead";
@@ -9,31 +9,17 @@ import TableCandidatesRow from "./TableCandidatesRow";
 
 const TableCandidates = () => {
 
-  const candidates = useSelector((state) => state.candidates);
   const filter = useSelector((state) => state.filterTable);
   const dispatch = useDispatch();
 
   // при загрузке
-  useEffect(() => {
-    console.log("use effect table");
-    // если включен фильтр
-    if (Array.isArray(filter) && filter.length) {
-      console.log("FILTER CHANGE");
-      dispatch(asyncGetCandidatesInit());
-    } else {
-      // при загрузке, при отключенном фильтре
-      //alert("FILTER CHANGE");
-      dispatch(asyncGetCandidatesInit());
-    }
+  useEffect(() => {    
+     dispatch(asyncGetCandidatesInit());  
   }, [filter]); // зависимость от фильтра
 
-  // FILTER
-  // useEffect(()=>{
-  //   if(Array.isArray(filter) && filter.length) {
-  //     console.log("FILTER CHANGE")
-  //     dispatch(asyncGetCandidatesInit());
-  //   };
-  // },[filter]);
+
+  const candidates = useSelector((state) => state.candidates);
+  
 
   console.log("FILTER", filter);
 

@@ -4,6 +4,7 @@ const initialState = {
     loading:false,
     login: false,
     role: false,
+    scroll:true,
     env:process.env.NODE_ENV,  // "development","production"
     toasts:[],
     users:[],
@@ -28,9 +29,9 @@ const initialState = {
     },
     filterTable:[
                  // {city:['Нижний Новгород','Выкса']},
-                 // {status:[]}
+                  {status:[2,3]}
                 ],
-    sort:false,
+    sort:{},
 }
 
 

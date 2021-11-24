@@ -12563,4 +12563,7 @@ input[type=file]:hover{
   margin-bottom: 0px;
   font-size:12px;
 }
+.infinite-scroll-component {
+  min-height: 500px;
+}
 /*# sourceMappingURL=base.css.map */
