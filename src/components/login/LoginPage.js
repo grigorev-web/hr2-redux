@@ -40,7 +40,7 @@ export default function LoginPage(props){
 
   return <div className="row login-page">
 
-  <img className="login-logo" src={logo_small} />
+  <img className="login-logo" src={logo_small} alt="мс контакт лого"/>
 
   <form className="login-container" onSubmit={ (e)=>loginClickHandler(e)}>
 

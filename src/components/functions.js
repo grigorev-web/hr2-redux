@@ -6,10 +6,10 @@ export function formatDate(str){
 
   let day = date.getDate();
   let month = date.getMonth();
-  let year = date.getFullYear();
+  //let year = date.getFullYear();
   let hours = ('0' + date.getHours()).slice(-2);
   let minutes = ('0' + date.getMinutes()).slice(-2);
-  let weekDay = date.getDay();
+  //let weekDay = date.getDay();
   const months = {
     0:'Янв',
     1:'Фев',
@@ -25,18 +25,18 @@ export function formatDate(str){
     11:'Дек',
   }
 
-  const weekDays = {
-    0:'вс',
-    1:'пн',
-    2:'вт',
-    3:'ср',
-    4:'чт',
-    5:'пт',
-    6:'сб',
-  }
+  // const weekDays = {
+  //   0:'вс',
+  //   1:'пн',
+  //   2:'вт',
+  //   3:'ср',
+  //   4:'чт',
+  //   5:'пт',
+  //   6:'сб',
+  // }
 
-  weekDay = weekDays[weekDay];
-  let today = new Date();
-  if(date.toDateString() == today.toDateString()) weekDay = 'сегодня';
+  //weekDay = weekDays[weekDay];
+  //let today = new Date();
+  //if(date.toDateString() == today.toDateString()) weekDay = 'сегодня';
   return `${day} ${months[month]} ${hours}:${minutes}`;
 }

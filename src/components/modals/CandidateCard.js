@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import OutsideAlerter from '../basic/OutsideAlerter';
 import {asyncGetCardCandidate,handleFile} from '../../store/asyncActions';
 import {FaUser,FaUpload} from "react-icons/fa";
-import { FiEdit3 } from "react-icons/fi";
+//import { FiEdit3 } from "react-icons/fi";
 import {statuses, statusColors} from '../constants'
 
 import Event from './Event';
