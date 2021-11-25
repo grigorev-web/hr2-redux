@@ -2,7 +2,7 @@ import HeadCity from "./heads/HeadCity";
 import HeadFIO from "./heads/HeadFIO";
 import HeadHR from "./heads/HeadHR";
 import HeadSource from "./heads/HeadSource";
-import StatusHead from "./heads/StatusHead";
+import HeadStatus from "./heads/HeadStatus";
 
 
 
@@ -16,7 +16,7 @@ const TableCandidatesHead = () => {
         <HeadSource/>
         <HeadFIO/>
         <HeadCity /> 
-        <StatusHead/>
+        <HeadStatus/>
         <th className="text-center" style={{width:'8%'}}>Проект</th>
         <HeadHR/>
       </tr>

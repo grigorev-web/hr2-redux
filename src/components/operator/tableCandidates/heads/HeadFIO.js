@@ -11,7 +11,7 @@ const HeadFIO = () => {
 
   return (
     <th
-      style={{width:300}}
+      style={{width:'30%'}}
       className="text-center"
       onMouseEnter={() => {
         setShowFilters(true);

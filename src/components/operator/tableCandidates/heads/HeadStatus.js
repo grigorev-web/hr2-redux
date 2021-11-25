@@ -1,12 +1,13 @@
-import FilterCity from "../fllter/city/FilterCity";
+
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import SortIcon from "../fllter/SortIcon";
+import FilterStatus from "../fllter/status/FiterStatus";
 
 
 
 
-const HeadCity = () => {
+const HeadStatus = () => {
   const [showFilters, setShowFilters] = useState(false);
   const filter = useSelector( state => state.filterTable);
   
@@ -19,12 +20,12 @@ const HeadCity = () => {
       onMouseLeave={()=>{setShowFilters(false)}}
     >
       <div className="d-flex justify-content-between">
-        <span>Город</span>
+        <span>Статус</span>
 
-        { (showFilters || filter.some( obj =>('city' in obj) )) ? (
+        { (showFilters || filter.some( obj =>('status' in obj) )) ? (
           <div className="d-flex">
             <SortIcon />
-            <FilterCity />
+            <FilterStatus />
           </div>
         ) : (
           ""
@@ -34,4 +35,4 @@ const HeadCity = () => {
   );
 };
 
-export default HeadCity;
+export default HeadStatus;
