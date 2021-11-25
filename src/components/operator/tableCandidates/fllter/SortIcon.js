@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaSortAmountUpAlt, FaSortAmountDown } from "react-icons/fa";
 
-const SortCity = () => {
+const SortIcon = () => {
   const [hover, setHover] = useState(false);
   const [sortAsc, setSortAsc] = useState(false);
   
@@ -22,4 +22,4 @@ const SortCity = () => {
   );
 };
 
-export default SortCity;
+export default SortIcon;

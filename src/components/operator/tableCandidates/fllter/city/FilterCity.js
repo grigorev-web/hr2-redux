@@ -14,7 +14,7 @@ const FilterCity = () => {
   return (
     <div
       className="pl-1 dropdown d-inline-block"   
-      style={{ color: filter.length ? "green" : "#495057" }}
+      style={{ color: filter.some( obj => 'city' in obj) ? "green" : "#495057", cursor:'pointer' }}
     >
       <FiFilter onClick={() => {
         setDropdown(!dropdown);

@@ -1,6 +1,7 @@
-import CityHead from "./heads/CityHead";
+import HeadCity from "./heads/HeadCity";
 import HeadFIO from "./heads/HeadFIO";
 import HeadHR from "./heads/HeadHR";
+import HeadSource from "./heads/HeadSource";
 import StatusHead from "./heads/StatusHead";
 
 
@@ -11,11 +12,12 @@ const TableCandidatesHead = () => {
     <thead>
       <tr>
 
-        <th className="text-center">#</th>
-        <th className="text-center">Источник</th>
+        <th className="text-center" style={{width:'8%'}}>#</th>
+        <HeadSource/>
         <HeadFIO/>
-        <CityHead /> 
+        <HeadCity /> 
         <StatusHead/>
+        <th className="text-center" style={{width:'8%'}}>Проект</th>
         <HeadHR/>
       </tr>
     </thead>

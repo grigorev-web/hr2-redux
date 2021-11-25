@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import FilterFIO from "../fllter/fio/FilterFIO";
 import InputFIO from "../fllter/fio/InputFIO";
-import SortFIO from "../fllter/fio/SortFIO";
+
+import SortIcon from "../fllter/SortIcon";
 
 const HeadFIO = () => {
   const [showFilters, setShowFilters] = useState(false);
@@ -10,6 +11,7 @@ const HeadFIO = () => {
 
   return (
     <th
+      style={{width:300}}
       className="text-center"
       onMouseEnter={() => {
         setShowFilters(true);
@@ -27,7 +29,7 @@ const HeadFIO = () => {
               <InputFIO />
             </div>
             <div className="d-flex">
-              <SortFIO />
+              <SortIcon />
               <FilterFIO />
             </div>
           </>

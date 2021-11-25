@@ -1,15 +1,18 @@
-import SortCity from "../fllter/city/SortCity";
-import FilterCity from "../fllter/city/FilterCity";
 import { useState } from "react";
-import { FiTerminal } from "react-icons/fi";
 import { useSelector } from "react-redux";
+import SortIcon from "../fllter/SortIcon";
+import FilterSource from "../fllter/source/FilterSource";
 
-const CityHead = () => {
+
+
+
+const HeadSource = () => {
   const [showFilters, setShowFilters] = useState(false);
-  const filter = useSelector( state => state.filterTable);
-  
+  const filter = useSelector((state) => state.filterTable);
+
   return (
     <th
+      style={{width:'9%'}}
       className="text-center"
       onMouseEnter={() => {
         setShowFilters(true);
@@ -17,12 +20,12 @@ const CityHead = () => {
       onMouseLeave={()=>{setShowFilters(false)}}
     >
       <div className="d-flex justify-content-between">
-        <span>Город</span>
+        <span>Источник</span>
 
-        { (showFilters || filter.some( obj =>('city' in obj) )) ? (
+        { (showFilters || filter.some( obj =>('source' in obj) )) ? (
           <div className="d-flex">
-            <SortCity />
-            <FilterCity />
+            <SortIcon />
+            <FilterSource />
           </div>
         ) : (
           ""
@@ -32,4 +35,4 @@ const CityHead = () => {
   );
 };
 
-export default CityHead;
+export default HeadSource;
