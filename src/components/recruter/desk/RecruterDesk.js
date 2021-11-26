@@ -8,6 +8,7 @@ import DeskColumn from './DeskColumn';
 import RecruterFilter from './RecruterFilter'
 import {statuses} from '../../constants';
 import {asyncGetDeskCandidates, asyncChangeStatusDesk} from '../../../store/asyncActions'
+import DeskFilter from "../filter/DeskFilter";
 
 
 const RecruterDesk = () => {
@@ -52,7 +53,7 @@ const RecruterDesk = () => {
   //console.log(candidates);
   //return null;
   return (<>
-      {/*<RecruterFilter/>*/}
+      <DeskFilter/>
     <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
 
     <div className="d-flex">
@@ -78,6 +79,7 @@ const RecruterDesk = () => {
         </div>
 
     </DragDropContext>
+    
     </>
   );
 };

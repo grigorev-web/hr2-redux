@@ -271,6 +271,17 @@ const reducer = (state, action) => {
       return { ...state, scroll: false };
       break;
 
+    // case "DESK_FILTER_ADD_RANGE":
+    //   return {
+    //     ...state,
+    //     filterDesk: {
+    //       ...state.filterDesk,
+    //       dateRange: action.date,
+    //       type: action.variant,
+    //     },
+    //   };
+    //   break;
+
     default:
       return state;
       break;

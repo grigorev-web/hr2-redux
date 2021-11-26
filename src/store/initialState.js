@@ -31,6 +31,12 @@ const initialState = {
                  // {city:['Нижний Новгород','Выкса']},
                  // {status:[2,3]}
                 ],
+    // filterDesk:{
+    //   active:false,
+    //   type:'interview',
+    //   dateRange:[],
+    //   hr:[],
+    // },
     sort:{},
 }
 

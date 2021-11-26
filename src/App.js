@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import "./css/datepicker.css";
 import AppContainer from "./components/layout/AppContainer";
 import MainMenu from "./components/menus/MainMenu";
 import AdminPage from "./components/admin";
