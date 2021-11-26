@@ -18,7 +18,7 @@ const InputFIO = () => {
       <input
         title="Введите 4 буквы"
         className="form-control"
-        style={{ height: 21, width: 200 }}
+        style={{ height: 21, width: 230 }}
         type="text"
         placeholder="Поиск"
         onChange={changeSearch}

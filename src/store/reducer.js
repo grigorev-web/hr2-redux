@@ -173,23 +173,8 @@ const reducer = (state, action) => {
       return { ...state, users: [] };
       break;
     case "ADD_TABLE_FILTER":
-      // {type:'ADD_TABLE_FILTER',column:'city', value:'Нижний Новгород'}
-      // {...state,
-      //   fiterTable:[{city:['Нижний Новгород','Выкса']}]
-      // }
-
-      //  if(action.column === 'namephone'){
-      //    return {...state,
-      //           filterTable:state.filterTable.map( (obj)=>{ // ищем нужный фильтр
-      //             if (action.column in obj) return {[action.column]:[action.value]} //  новый value
-      //             else return obj;
-      //           }),
-      //  }
-      // }
-
       // Если фильтр уже содержит этот column('city' или 'status')
       if (state.filterTable.some((obj) => action.column in obj)) {
-        console.log("Уже содержит");
         return {
           ...state,
           filterTable: state.filterTable.map((obj) => {
@@ -199,6 +184,7 @@ const reducer = (state, action) => {
             // Пушим новый value
             else return obj;
           }),
+          scroll: true,
         };
       } // если не содержит - добавляем обьект фильтра
       else
@@ -249,13 +235,15 @@ const reducer = (state, action) => {
     case "CLEAR_NAMEPHONE_FILTER":
       return {
         ...state,
-        filterTable: state.filterTable.filter(obj => "namephone" in obj ? false : true),
-        scroll:true,
+        filterTable: state.filterTable.filter((obj) =>
+          "namephone" in obj ? false : true
+        ),
+        scroll: true,
       };
       break;
 
     case "CLEAR_TABLE_FILTER":
-      return { ...state, filterTable: [] };
+      return { ...state, filterTable: [], scroll: true };
       break;
 
     case "ADD_NAMEPHONE_FILTER":
@@ -276,12 +264,13 @@ const reducer = (state, action) => {
             })
           : [...state.filterTable, { namephone: [action.value] }]; // если нет фильтра - добавляем
 
-      return { ...state, filterTable: newFilterTable };
+      return { ...state, filterTable: newFilterTable, scroll: true };
       break;
 
     case "STOP_SCROLL":
       return { ...state, scroll: false };
       break;
+
     default:
       return state;
       break;

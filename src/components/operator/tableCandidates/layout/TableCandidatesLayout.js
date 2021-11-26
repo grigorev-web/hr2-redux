@@ -36,7 +36,7 @@ const TableCandidatesLayout = ({ children }) => {
                 className="active btn btn-danger mr-4"
                 onClick={()=>{dispatch({ type: "CLEAR_TABLE_FILTER" })}}
               >
-                Сбросить фильтры
+                Сбросить фильтры ({filter.length})
               </button> :''}
               <a
                 href={`http://10.105.0.8/dg/hh/add_contact.php?hr=${login}`}

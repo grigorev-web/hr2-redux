@@ -29,6 +29,7 @@ export const statuses = {
   30: 'принят на работу',
   31: 'уволен',
   40: 'черный список',
+  41: 'удален',
   100: 'Смена HR',
 }
 
@@ -59,5 +60,6 @@ export const statusColors = {
   30: 'success',
   31: 'danger',
   40: 'dark',
+  41: 'danger',
   100:'secondary',
 }

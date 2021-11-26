@@ -15,6 +15,7 @@ const FilterSource = () => {
       className="pl-1 dropdown d-inline-block"
       style={{
         color: filter.some((obj) => "source" in obj) ? "green" : "#495057",
+        cursor:'pointer',
       }}
     >
       <FiFilter

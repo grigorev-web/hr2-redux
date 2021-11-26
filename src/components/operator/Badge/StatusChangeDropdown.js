@@ -57,8 +57,10 @@ const StatusChangeDropdown = ({handleOutsideClick, id, status, phone}) => {
                           </li>
 
                           <li className="nav-item-divider nav-item"></li>
-                          <li className="nav-item-btn nav-item">
+                          <li className="nav-item-btn nav-item d-flex justify-content-between">
                               <button onClick={handleOutsideClick} className="btn-wide btn-shadow btn btn-secondary btn-sm">Отмена</button>
+                              <button onClick={(e)=>changeStatus(41)} className="btn-wide btn-shadow btn btn-danger btn-sm">Удалить</button>
+                              
                           </li>
                         </ul>
               </div>
