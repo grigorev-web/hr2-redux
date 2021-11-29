@@ -18,21 +18,27 @@ const DeskColumn = ({droppableId,items,status, statusName, bottom}) => {
   });
 
 
-  const getItemStyle = (isDragging, draggableStyle) => ({
+  const getItemStyle = (isDragging, draggableStyle) => {
     // some basic styles to make the items look a bit nicer
-    userSelect: "none",
-    padding: grid * 2,
-    margin: `0 0 ${grid}px 0`,
-    minHeight: '80px',
-    overflow:'hidden',
-    boxShadow:'2px 2px 6px grey',
-    // change background colour if dragging
-    background: isDragging ? "lightgreen" : "white",
-    border: '1px solid #dfd6d6',
-
-    // styles we need to apply on draggables
-    ...draggableStyle,
-  });
+    if(isDragging) {
+      draggableStyle.transform += ' rotate(5deg) scale(1.1)';
+    } 
+    return {
+      userSelect: "none",
+      padding: grid * 2,
+      margin: `0 0 ${grid}px 0`,
+      minHeight: '80px',
+      overflow:'hidden',
+      boxShadow: isDragging ? '8px 8px 18px grey' : '2px 2px 6px grey',
+      // change background colour if dragging
+      background: isDragging ? "lightgreen" : "white",
+      border: '1px solid #dfd6d6',
+  
+      // styles we need to apply on draggables
+      ...draggableStyle,
+    }
+   
+  };
 
   const grid = 4;
 
@@ -54,7 +60,7 @@ const DeskColumn = ({droppableId,items,status, statusName, bottom}) => {
                 {...provided.draggableProps}
                 {...provided.dragHandleProps}
                 style={getItemStyle(
-                  snapshot.isDragging,
+                  (snapshot.isDragging && !snapshot.isDropAnimating),
                   provided.draggableProps.style
                 )}
               >

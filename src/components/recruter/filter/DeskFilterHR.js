@@ -1,16 +1,45 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import api from "../../../store/API";
 
+const DeskFilterHR = ({selectedHR, setSelectedHR}) => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
 
+  const [HRs, setHRs] = useState({});
 
-const DeskFilterHR = ()=>{
-    return   <div><h5>По рекрутеру</h5>
-    <p>
-      With supporting text below as a natural lead-in to additional content.
-    </p>
-    <p className="mb-0">
-      Lorem Ipsum has been the industry's standard dummy text ever since the
-      1500s, when an unknown printer took a galley of type and scrambled.
-    </p>
+  useEffect(() => {
+    const API = api(dispatch, state);
+    API.get(`filter-values?column=hr`)
+      .then(function (response) {
+        // Получаем уникальные hr и счет
+        setHRs(response.data.values);
+        console.log("VALUES", response.data.values);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
+  function selectHR(e){
+      console.log("selectedHR",e.target.value)
+      setSelectedHR(e.target.value);
+  }
+  return (
+    <div>
+      <div className="position-relative form-group">
+        <label htmlFor="exampleSelect" className="">
+          Выберите HR
+        </label>
+        <select value={selectedHR} name="select" id="exampleSelect" className="form-control" onChange={selectHR}>
+            <option value="all">Выбрать всех</option>
+          {Object.keys.length
+            ? Object.entries(HRs).map(([hr, count],index) => <option key={index} value={hr} >{hr}</option>)
+            : ""}
+        </select>
+      </div>
     </div>
-}
+  );
+};
 
 export default DeskFilterHR;

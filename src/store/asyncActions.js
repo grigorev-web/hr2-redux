@@ -70,15 +70,15 @@ export const asyncChangeStatus = (id, status,comment = '', time = '', closeFunc 
 
 
 
-export const asyncGetDeskCandidates = () => (dispatch, getState) =>{
+export const asyncGetDeskCandidates = (filter = false) => (dispatch, getState) =>{
   dispatch({type:"LOADING"});
   console.log("asyncGetDeskCandidates")
   const state = getState();
   const API = api(dispatch,state);
 
-  API.get(`candidates/get-desk-candidates`)
+  API.post(`candidates/get-desk-candidates`,{filter:filter})
     .then(function (response) {
-         console.log("asyncGetDeskCandidates SUCCESS",response.data.results);
+         console.log("asyncGetDeskCandidates SUCCESS",response.data);
         dispatch({type:"ONLOAD_DESK", candidates: response.data.results})
 
     })
