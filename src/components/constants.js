@@ -31,6 +31,7 @@ export const statuses = {
   40: 'черный список',
   41: 'удален',
   100: 'Смена HR',
+  101: 'Смена проекта',
 }
 
 export const statusColors = {
@@ -62,4 +63,5 @@ export const statusColors = {
   40: 'dark',
   41: 'danger',
   100:'secondary',
+  101:'warning',
 }

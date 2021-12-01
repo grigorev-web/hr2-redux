@@ -4,6 +4,7 @@ const initialState = {
     loading:false,
     login: false,
     role: false,
+    projects:{},
     scroll:true,
     env:process.env.NODE_ENV,  // "development","production"
     toasts:[],

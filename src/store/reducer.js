@@ -129,6 +129,29 @@ const reducer = (state, action) => {
       };
       break;
 
+
+    case "CHANGE_PROJECT_UPDATE":
+    return {
+      ...state,
+      candidates: state.candidates.map((item) => {
+        if (item.id == action.id) {
+          let tempItem = { ...item };
+          tempItem.project = action.project;
+          return tempItem;
+        }
+        return item;
+      }),
+      deskCandidates: state.deskCandidates.map((item) => {
+        if (item.id == action.id) {
+          let tempItem = { ...item };
+          tempItem.project = action.project;
+          return tempItem;
+        }
+        return item;
+      }),
+    };
+    break;
+
     case "ADD_TOAST":
       return {
         ...state,
@@ -271,16 +294,26 @@ const reducer = (state, action) => {
       return { ...state, scroll: false };
       break;
 
-    // case "DESK_FILTER_ADD_RANGE":
-    //   return {
-    //     ...state,
-    //     filterDesk: {
-    //       ...state.filterDesk,
-    //       dateRange: action.date,
-    //       type: action.variant,
-    //     },
-    //   };
-    //   break;
+    case "INIT_SETTINGS":
+      return {
+        ...state,
+        projects: action.projects.reduce((acc, value)=>{
+          acc[value.id] = value.name;
+          return acc;
+        },{}),
+      };
+      break;
+
+
+    case "UPDATE_PROJECTS":
+      return {
+        ...state,
+        projects: action.projects.reduce((acc, value)=>{
+          acc[value.id] = value.name;
+          return acc;
+        },{}),
+      };
+      break;
 
     default:
       return state;

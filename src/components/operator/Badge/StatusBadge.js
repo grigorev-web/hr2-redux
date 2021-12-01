@@ -12,7 +12,7 @@ const StatusBadge = ({id, status, phone}) => {
 
     }
 
-    return <div className="dropdown d-inline-block" style={{width:'200px'}}>
+    return <div className="dropdown" style={{width:'210px',margin:'5px auto'}}>
             <button className={`btn btn-sm w-100 dropdown-toggle btn-${statusColors[status]}`}
                     onClick={toggleBadge}>
               {statuses[status]}

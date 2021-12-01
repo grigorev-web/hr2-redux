@@ -6,7 +6,7 @@ export function formatDate(str){
 
   let day = date.getDate();
   let month = date.getMonth();
-  //let year = date.getFullYear();
+  let year = date.getFullYear().toString().slice(-2);
   let hours = ('0' + date.getHours()).slice(-2);
   let minutes = ('0' + date.getMinutes()).slice(-2);
   //let weekDay = date.getDay();
@@ -38,5 +38,5 @@ export function formatDate(str){
   //weekDay = weekDays[weekDay];
   //let today = new Date();
   //if(date.toDateString() == today.toDateString()) weekDay = 'сегодня';
-  return `${day} ${months[month]} ${hours}:${minutes}`;
+  return `${day} ${months[month]}'${year} ${hours}:${minutes}`;
 }

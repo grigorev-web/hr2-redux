@@ -4,6 +4,7 @@ import CellCity from "./cells/CellCity";
 import CellID from "./cells/CellID";
 import CellName from "./cells/CellName";
 import CellStatus from "./cells/CellStatus";
+import CellProject from "./cells/cellProject/CellProject";
 
 
 
@@ -16,7 +17,7 @@ const TableCandidatesRow = ({candidate}) => {
         <CellName id={candidate.id} name={candidate.name} phone={candidate.phone} />
         <CellCity city={candidate.city}/>
         <CellStatus id={candidate.id} status={candidate.status} phone={candidate.phone}/>
-        <td>none</td>
+        <CellProject candidate={candidate} />
         <CellHR candidate={candidate}/>
     </tr>
 }

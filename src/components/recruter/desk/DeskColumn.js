@@ -64,7 +64,7 @@ const DeskColumn = ({droppableId,items,status, statusName, bottom}) => {
                   provided.draggableProps.style
                 )}
               >
-                <DeskCard id={item.id} name={item.name} phone={item.phone} />
+                <DeskCard id={item.id} name={item.name} phone={item.phone} sobes={item.sobes} />
               </div>
             )}
           </Draggable>

@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 import {FaUser} from "react-icons/fa";
 
 
-const DeskCard = ({id, name, phone}) => {
+const DeskCard = ({id, name, phone,sobes}) => {
 
   const dispatch = useDispatch();
 
@@ -25,6 +25,7 @@ const DeskCard = ({id, name, phone}) => {
           <div className="widget-content-left flex2">
             <div className="widget-heading"><a onClick={getCardCandidate} href="/hh">{name}</a></div>
             <div className="widget-subheading opacity-7">{phone}</div>
+            <div className="widget-subheading opacity-7 text-warning">{sobes}</div>
           </div>
         </div>
       </div>

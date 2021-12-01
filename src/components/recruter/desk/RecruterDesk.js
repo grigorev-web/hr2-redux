@@ -18,7 +18,7 @@ const RecruterDesk = () => {
 
   const candidates = useSelector( state => state.deskCandidates);
   const dispatch = useDispatch();
-
+  //console.log("candidattes",candidates)
   useEffect( ()=>{
     dispatch(asyncGetDeskCandidates());
   },[]);
@@ -43,7 +43,7 @@ const RecruterDesk = () => {
     let newStatus = destination.droppableId.substr(9); // новый статус
     let id = source.index; // id кандидата
     console.log("SOURCE",source);
-    if( newStatus === '13') dispatch({type:"OPEN_MODAL_SOBESTIME", id:id, status:newStatus, phone:source.phone});
+    if( newStatus === '13' || newStatus === '2') dispatch({type:"OPEN_MODAL_SOBESTIME", id:id, status:newStatus, phone:source.phone});
     else dispatch({type:"OPEN_MODAL_COMMENT", id:id, status:newStatus, phone:source.phone})
   }
 

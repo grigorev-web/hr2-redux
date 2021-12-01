@@ -21,11 +21,11 @@ const TableCandidates = () => {
 
   const candidates = useSelector((state) => state.candidates);
 
-  console.log("FILTER", filter);
+  //console.log("FILTER", filter);
 
   return (
     <TableCandidatesLayout>
-      <table className="align-middle mb-0 table table-borderless table-striped table-hover">
+      <table className="align-middle mb-0 table table-bordered table-striped table-hover table-candidates">
         <TableCandidatesHead />
         <tbody>
           {candidates.length ? (
