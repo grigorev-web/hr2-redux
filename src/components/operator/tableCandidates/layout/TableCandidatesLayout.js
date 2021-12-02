@@ -28,6 +28,7 @@ const TableCandidatesLayout = ({ children }) => {
             <button
               className="btn btn-outline-success btn-sm ml-3"
               onClick={refreshTable}
+              title="Обновить таблицу"
             >
               <BiRefresh size="1.5em" />
             </button>

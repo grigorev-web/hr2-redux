@@ -149,6 +149,16 @@ const reducer = (state, action) => {
         }
         return item;
       }),
+      modals:{
+        ...state.modals,
+        candidateCard:{
+          ...state.modals.candidateCard,
+          candidate:{
+            ...state.modals.candidateCard.candidate,
+            project: action.project,
+          }
+        }
+      }
     };
     break;
 

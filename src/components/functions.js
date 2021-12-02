@@ -1,7 +1,7 @@
 
 
 export function formatDate(str){
-
+  if(!str) return '';
   let date = new Date(str);
 
   let day = date.getDate();

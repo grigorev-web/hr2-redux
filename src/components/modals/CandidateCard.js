@@ -2,12 +2,15 @@ import { useEffect, useState, useRef } from "react";
 import ModalLayout from "./ModalLayout";
 import { useDispatch, useSelector } from "react-redux";
 import OutsideAlerter from "../basic/OutsideAlerter";
-import { asyncGetCardCandidate, handleFile } from "../../store/asyncActions";
+import { asyncChangeCandidateComment, asyncChangeCandidateEmail, asyncGetCardCandidate, handleFile } from "../../store/asyncActions";
 import { FaUser, FaUpload } from "react-icons/fa";
 //import { FiEdit3 } from "react-icons/fi";
 import { statuses, statusColors } from "../constants";
 
 import Event from "./Event";
+import CellProject from "../operator/tableCandidates/cells/cellProject/CellProject";
+import { formatDate } from "../functions";
+import EditableCell from "../basic/EditableCell";
 
 const CandidateCard = () => {
   const [loading, setLoading] = useState(true);
@@ -68,64 +71,110 @@ const CandidateCard = () => {
                     <div className="ml-3">
                       <h4>{candidate.name}</h4>
                       <h6>{candidate.phone}</h6>
-                      <p>Проект</p>
+                      <div className="border project-label">
+                        <CellProject candidate={candidate} />
+                      </div>
                     </div>
                   </div>
-                  <hr />
-                  <p>Город: {candidate.city ? candidate.city : "не указано"}</p>
-                  <p>email:</p>
-                  <p>
-                    Статус:{" "}
-                    <span
-                      className={`mb-2 mr-2 badge badge-pill badge-${
-                        statusColors[candidate.status]
-                      }`}
-                    >
-                      {statuses[candidate.status]}
-                    </span>
-                  </p>
-                  <p>
-                    Резюме:{" "}
-                    {candidate.resume ? (
-                      <a target="_blank" href={candidate.resume}>
-                        резюме
-                      </a>
-                    ) : (
-                      "не указано"
-                    )}
-                  </p>
-                  <p>
-                    Резюме PDF:{" "}
-                    {candidate.file ? (
-                      <a
-                        target="_blank"
-                        href={`http://10.105.0.8/dg/hh/api/resume/${candidate.file}`}
-                      >
-                        файл
-                      </a>
-                    ) : (
-                      <button
-                        onClick={() => fileInputRef.current.click()}
-                        className="btn btn-outline-success ml-2 opacity-7"
-                        style={{ padding: "0px 4px 2px 3px" }}
-                      >
-                        <FaUpload /> загрузить
-                      </button>
-                    )}
-                    <input
-                      ref={fileInputRef}
-                      multiple={false}
-                      type="file"
-                      name="upload_file1"
-                      onChange={(e) =>
-                        dispatch(handleFile(e, candidate.id, setRefresh))
-                      }
-                      hidden
-                    />
-                  </p>
-                  <p>Источник: {candidate.source}</p>
-                  <p>Дата добавления: {candidate.date}</p>
-                  <p>Комментарий: {candidate.comment}</p>
+
+                  <table className="table table-bordered">
+                    <tr>
+                      <td style={{ width: "40%" }}>Город</td>
+                      <td>{candidate.city ? candidate.city : "не указано"}</td>
+                    </tr>
+                    <tr>
+                      <td>email</td>
+                      <td><EditableCell
+                          value={candidate.email}
+                          callback={ (val) =>dispatch(asyncChangeCandidateEmail(id, val)) }
+                        /></td>
+                    </tr>
+                    <tr>
+                      <td>Статус</td>
+                      <td>
+                        {" "}
+                        <span
+                          className={`badge badge-pill badge-${
+                            statusColors[candidate.status]
+                          }`}
+                        >
+                          {statuses[candidate.status]}
+                        </span>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Резюме</td>
+                      <td>
+                        {" "}
+                        {candidate.resume ? (
+                          <a target="_blank" href={candidate.resume}>
+                            резюме
+                          </a>
+                        ) : (
+                          "не указано"
+                        )}
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Резюме PDF</td>
+                      <td>
+                        {" "}
+                        {candidate.file ? (
+                          <a
+                            target="_blank"
+                            href={`http://10.105.0.8/dg/hh/api/resume/${candidate.file}`}
+                          >
+                            файл
+                          </a>
+                        ) : (
+                          <button
+                            onClick={() => fileInputRef.current.click()}
+                            className="btn btn-outline-success ml-2 opacity-7"
+                            style={{ padding: "0px 4px 2px 3px" }}
+                          >
+                            <FaUpload /> загрузить
+                          </button>
+                        )}
+                        <input
+                          ref={fileInputRef}
+                          multiple={false}
+                          type="file"
+                          name="upload_file1"
+                          onChange={(e) =>
+                            dispatch(handleFile(e, candidate.id, setRefresh))
+                          }
+                          hidden
+                        />
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Источник</td>
+                      <td>{candidate.source}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Дата добавления</td>
+                      <td>{formatDate(candidate.date)}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Дата собеседования</td>
+                      <td className="text-warning">{formatDate(candidate.sobes)}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Комментарий</td>
+                      <td>
+                        <EditableCell
+                          value={candidate.comment}
+                          callback={ (val) =>dispatch(asyncChangeCandidateComment(id, val)) }
+                        />
+                      </td>
+                    </tr>
+                  </table>
                 </div>
 
                 <div className="col-6 card-events">

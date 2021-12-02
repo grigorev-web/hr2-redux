@@ -164,20 +164,30 @@ export const asyncChangeHR = (hr, candidateID) => (dispatch, getState) => {
     });
 };
 
-export const asyncChangeProject = (projectID, candidateID) => (dispatch, getState) => {
-  const state = getState();
-  const API = api(dispatch, state);
-  API.put(`candidates/${candidateID}/change-project`, { project: projectID, projectName: state.projects[projectID] })
-    .then(function (response) {
-      console.log(response);
-
-      dispatch(showToast("Проект изменен на " + state.projects[projectID], "success"));
-      dispatch({ type: "CHANGE_PROJECT_UPDATE", id: candidateID, project: projectID });
+export const asyncChangeProject =
+  (projectID, candidateID) => (dispatch, getState) => {
+    const state = getState();
+    const API = api(dispatch, state);
+    API.put(`candidates/${candidateID}/change-project`, {
+      project: projectID,
+      projectName: state.projects[projectID],
     })
-    .catch(function (error) {
-      console.log(error);
-    });
-};
+      .then(function (response) {
+        console.log(response);
+
+        dispatch(
+          showToast("Проект изменен на " + state.projects[projectID], "success")
+        );
+        dispatch({
+          type: "CHANGE_PROJECT_UPDATE",
+          id: candidateID,
+          project: projectID,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
 export const asyncGetCandidatesFilter = () => (dispatch, getState) => {
   const state = getState();
@@ -196,5 +206,39 @@ export const asyncGetInitSettings = () => (dispatch, getState) => {
   API.get(`settings`).then(function (response) {
     console.log("SETTINGS INIT", response.data);
     dispatch({ type: "INIT_SETTINGS", projects: response.data.projects });
+  });
+};
+
+export const asyncChangeUserComment = (id, comment) => (dispatch, getState) => {
+  const state = getState();
+  const API = api(dispatch, state);
+  API.put(`users/${id}/change-comment`, { comment, comment }).then(function (
+    response
+  ) {
+    console.log("CHANGE COMMENT", response.data);
+    dispatch( showToast("Имя сохранено (" + comment + ")", "success") );
+  });
+};
+
+
+export const asyncChangeCandidateComment = (id, comment) => (dispatch, getState) => {
+  const state = getState();
+  const API = api(dispatch, state);
+  API.put(`candidates/${id}/change-comment`, { comment, comment }).then(function (
+    response
+  ) {
+    console.log("CHANGE COMMENT", response.data);
+    dispatch( showToast("Комментарий сохранен (" + comment + ")", "success") );
+  });
+};
+
+export const asyncChangeCandidateEmail = (id, email) => (dispatch, getState) => {
+  const state = getState();
+  const API = api(dispatch, state);
+  API.put(`candidates/${id}/change-email`, { email, email }).then(function (
+    response
+  ) {
+    console.log("CHANGE COMMENT", response.data);
+    dispatch( showToast("email сохранен (" + email + ")", "success") );
   });
 };

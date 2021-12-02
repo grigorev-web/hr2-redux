@@ -14,19 +14,18 @@ const CellProject = ({ candidate }) => {
   function closeDropdown(){
     setDropdown(false);
   }
-  return <td>
-        <div className="dropdown d-inline-block" style={{width:'200px',textAlign:'center',margin:5}}>
+  return <div className="dropdown d-inline-block" style={{width:'200px',textAlign:'center',margin:5}}>
         <button className="btn btn-sm btn-outline-dark border-0"
                 style={{minWidth:'100px'}}
-                onClick={(e)=>{setDropdown(!dropdown)}}>
+                onClick={(e)=>{setDropdown(!dropdown)}}
+                title={candidate.project && (candidate.project in projects)? "Сменить проект" : "Добавить проект"}
+                >
 
                 {candidate.project && (candidate.project in projects)? projects[candidate.project] : "добавить"}
         </button>
         {dropdown ? <ProjectChangeDropdown candidate={candidate} handleOutsideClick={closeDropdown}/> : ''}
         </div>
       
-      
-      </td>;
 };
 
 export default CellProject;

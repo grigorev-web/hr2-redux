@@ -17,7 +17,7 @@ const TableCandidatesRow = ({candidate}) => {
         <CellName id={candidate.id} name={candidate.name} phone={candidate.phone} />
         <CellCity city={candidate.city}/>
         <CellStatus id={candidate.id} status={candidate.status} phone={candidate.phone}/>
-        <CellProject candidate={candidate} />
+        <td><CellProject candidate={candidate} /></td>
         <CellHR candidate={candidate}/>
     </tr>
 }

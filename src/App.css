@@ -12570,4 +12570,7 @@ input[type=file]:hover{
 .table-candidates td{
   padding: 0.25rem;
 }
+.project-label button{
+  font-weight: bold;
+}
 /*# sourceMappingURL=base.css.map */
